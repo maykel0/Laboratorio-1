@@ -1,103 +1,212 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Café Macondo</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Café Macondo, repostería artesanal y panadería con productos frescos y deliciosos.">
+
+  <meta
+    property="og:title"
+    content="Café Macondo">
+
+  <meta
+    property="og:description"
+    content="Repostería artesanal y panadería para compartir momentos especiales.">
+
+  <meta
+    property="og:type"
+    content="website">
+
+  <title>Café Macondo | Repostería Artesanal</title>
+
+  <link rel="stylesheet" href="styles.css">
+
 </head>
+
 <body>
 
-    <header>
-        <nav>
-            <h1>Café Macondo</h1>
+  <header class="site-header">
 
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#nosotros">Nosotros</a></li>
-                <li><a href="#productos">Productos</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
+    <nav
+      aria-label="Navegación principal">
 
-    <main>
+      <h1>Café Macondo</h1>
 
-        <section id="inicio" class="hero">
-            <article>
-                <h2>Más que café, una experiencia.</h2>
-                <p>
-                    Disfruta de nuestros cafés especiales, repostería artesanal
-                    y un ambiente acogedor para compartir.
-                </p>
+      <ul class="menu">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#productos">Productos</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
 
-                <a href="#productos" class="btn">
-                    Ver productos
-                </a>
-            </article>
-        </section>
+    </nav>
 
-        <section id="nosotros">
-            <h2>Sobre Nosotros</h2>
+  </header>
 
-            <p>
-                En Café Macondo creemos que cada taza cuenta una historia.
-                Ofrecemos productos preparados con pasión y los mejores ingredientes.
-            </p>
-        </section>
+  <main>
 
-        <section id="productos">
-            <h2>Productos Destacados</h2>
+    <section
+      id="inicio"
+      class="hero">
 
-            <section class="galeria">
+      <article>
 
-                <article class="producto">
-                    <img src="img/producto1.jpg" alt="Café especial">
-                    <h3>Café Especial</h3>
-                </article>
+        <h2>Eslogan temporal</h2>
 
-                <article class="producto">
-                    <img src="img/producto2.jpg" alt="Capuchino">
-                    <h3>Capuchino</h3>
-                </article>
+        <p>
+          Repostería artesanal, pan recién horneado
+          y el acompañamiento perfecto para cada momento.
+        </p>
 
-                <article class="producto">
-                    <img src="img/producto3.jpg" alt="Postre">
-                    <h3>Postres Artesanales</h3>
-                </article>
+        <a
+          class="btn"
+          href="#productos">
 
-                <article class="producto">
-                    <img src="img/producto4.jpg" alt="Bebida fría">
-                    <h3>Bebidas Frías</h3>
-                </article>
+          Ver productos
 
-                <article class="producto">
-                    <img src="img/producto5.jpg" alt="Combo">
-                    <h3>Combos Especiales</h3>
-                </article>
+        </a>
 
-                <article class="producto">
-                    <img src="img/producto6.jpg" alt="Café gourmet">
-                    <h3>Café Gourmet</h3>
-                </article>
+      </article>
 
-            </section>
-        </section>
+    </section>
 
-        <section id="contacto">
-            <h2>Visítanos</h2>
+    <section
+      id="productos"
+      aria-labelledby="productos-titulo">
 
-            <address>
-                Ciudad Quesada, Costa Rica<br>
-                Tel: +506 0000-0000
-            </address>
-        </section>
+      <h2 id="productos-titulo">
+        Productos Destacados
+      </h2>
 
-    </main>
+      <section class="product-grid">
 
-    <footer>
-        <p>&copy; 2026 Café Macondo. Todos los derechos reservados.</p>
-    </footer>
+        <article class="card">
+
+          <img
+            src="img/pastel1.webp"
+            alt="Pastel artesanal de chocolate"
+            loading="lazy">
+
+          <h3>Pastel de Chocolate</h3>
+
+        </article>
+
+        <article class="card">
+
+          <img
+            src="img/pastel2.webp"
+            alt="Cheesecake artesanal"
+            loading="lazy">
+
+          <h3>Cheesecake</h3>
+
+        </article>
+
+        <article class="card">
+
+          <img
+            src="img/croissant.webp"
+            alt="Croissant recién horneado"
+            loading="lazy">
+
+          <h3>Croissant</h3>
+
+        </article>
+
+        <article class="card">
+
+          <img
+            src="img/pan.webp"
+            alt="Pan artesanal"
+            loading="lazy">
+
+          <h3>Pan Artesanal</h3>
+
+        </article>
+
+        <article class="card">
+
+          <img
+            src="img/cupcake.webp"
+            alt="Cupcake decorado"
+            loading="lazy">
+
+          <h3>Cupcakes</h3>
+
+        </article>
+
+        <article class="card">
+
+          <img
+            src="img/cafe.webp"
+            alt="Café de la casa"
+            loading="lazy">
+
+          <h3>Café de la Casa</h3>
+
+        </article>
+
+      </section>
+
+    </section>
+
+    <section
+      id="nosotros"
+      aria-labelledby="nosotros-titulo">
+
+      <h2 id="nosotros-titulo">
+        Sobre Nosotros
+      </h2>
+
+      <p>
+        En Café Macondo elaboramos nuestros productos
+        con dedicación, ingredientes de calidad y pasión
+        por la repostería artesanal.
+      </p>
+
+    </section>
+
+    <section
+      id="contacto"
+      aria-labelledby="contacto-titulo">
+
+      <h2 id="contacto-titulo">
+        Contáctanos
+      </h2>
+
+      <address>
+
+        Ciudad Quesada, Costa Rica
+
+        <br>
+
+        Teléfono:
+        <a href="tel:+50600000000">
+          +506 0000-0000
+        </a>
+
+      </address>
+
+    </section>
+
+  </main>
+
+  <footer>
+
+    <p>
+      &copy; 2026 Café Macondo.
+      Todos los derechos reservados.
+    </p>
+
+  </footer>
 
 </body>
+
 </html>
