@@ -261,6 +261,53 @@ nav h1 {
 
   display: block;
 }
+
+/* INSTAGRAM */
+
+#instagram {
+  max-width: var(--container-width);
+
+  margin: 0 auto;
+
+  padding: 4rem 1rem;
+
+  text-align: center;
+}
+
+#instagram p {
+  max-width: 600px;
+
+  margin: 0 auto 1.5rem;
+}
+
+.instagram-btn {
+  display: inline-block;
+
+  background: linear-gradient(
+    45deg,
+    #833ab4,
+    #fd1d1d,
+    #fcb045
+  );
+
+  color: white;
+
+  text-decoration: none;
+
+  padding: 1rem 2rem;
+
+  border-radius: 999px;
+
+  font-weight: bold;
+
+  transition: transform .2s ease;
+}
+
+.instagram-btn:hover,
+.instagram-btn:focus-visible {
+  transform: translateY(-2px);
+}
+
 /* FOOTER */
 footer {
   background: var(--color-primary);
