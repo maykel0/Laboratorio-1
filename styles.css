@@ -315,7 +315,16 @@ footer {
   text-align: center;
   padding: 1rem;
 }
+.social-link a {
+  color: var(--color-secondary);
+  font-weight: 700;
+  text-decoration: none;
+}
 
+.social-link a:hover,
+.social-link a:focus-visible {
+  text-decoration: underline;
+}
 /* DESKTOP */
 @media (min-width: 768px) {
   nav {
