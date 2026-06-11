@@ -240,7 +240,27 @@ nav h1 {
 #contacto a {
   color: var(--color-primary);
 }
+.map-container {
+  margin-top: 2rem;
 
+  border-radius: var(--radius);
+
+  overflow: hidden;
+
+  box-shadow: var(--shadow);
+
+  background: var(--color-surface);
+}
+
+.map-container iframe {
+  width: 100%;
+
+  height: 450px;
+
+  border: 0;
+
+  display: block;
+}
 /* FOOTER */
 footer {
   background: var(--color-primary);
