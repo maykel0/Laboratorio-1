@@ -1,212 +1,193 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0">
-
-  <meta
-    name="description"
-    content="Café Macondo, repostería artesanal y panadería con productos frescos y deliciosos.">
-
-  <meta
-    property="og:title"
-    content="Café Macondo">
-
-  <meta
-    property="og:description"
-    content="Repostería artesanal y panadería para compartir momentos especiales.">
-
-  <meta
-    property="og:type"
-    content="website">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Café Macondo, repostería artesanal y panadería con productos frescos y deliciosos.">
+  <meta property="og:title" content="Café Macondo">
+  <meta property="og:description" content="Repostería artesanal y panadería para compartir momentos especiales.">
+  <meta property="og:type" content="website">
   <title>Café Macondo | Repostería Artesanal</title>
-
   <link rel="stylesheet" href="styles.css">
-
 </head>
-
 <body>
 
   <header class="site-header">
-
-    <nav
-      aria-label="Navegación principal">
-
-      <h1>Café Macondo</h1>
-
+    <nav aria-label="Navegación principal">
+      <div class="brand">
+        <img
+          src="imagenes/logo.jpeg"
+          alt="Logo Café Macondo"
+          class="logo">
+        <h1>Café Macondo</h1>
+      </div>
       <ul class="menu">
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#productos">Productos</a></li>
         <li><a href="#nosotros">Nosotros</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
-
     </nav>
-
   </header>
 
   <main>
 
-    <section
-      id="inicio"
-      class="hero">
-
-      <article>
-
+    <!-- HERO CON CARRUSEL -->
+    <section id="inicio" class="hero" aria-label="Sección principal">
+      <div class="carousel" aria-hidden="true">
+        <div class="carousel-slide active" style="background-image: url('imagenes/cafe_01.jpeg')"></div>
+        <div class="carousel-slide" style="background-image: url('imagenes/cafe_02.jpeg')"></div>
+        <div class="carousel-slide" style="background-image: url('imagenes/pastel_01.jpeg')"></div>
+        <div class="carousel-slide" style="background-image: url('imagenes/pastel_05.jpeg')"></div>
+        <div class="carousel-slide" style="background-image: url('imagenes/cafe_03.jpeg')"></div>
+        <div class="carousel-slide" style="background-image: url('imagenes/pastel_09.jpeg')"></div>
+        <div class="carousel-slide" style="background-image: url('imagenes/cafe_04.jpeg')"></div>
+      </div>
+      <div class="carousel-overlay"></div>
+      <article class="hero-content">
         <h2>Eslogan temporal</h2>
-
         <p>
           Repostería artesanal, pan recién horneado
           y el acompañamiento perfecto para cada momento.
         </p>
-
-        <a
-          class="btn"
-          href="#productos">
-
-          Ver productos
-
-        </a>
-
+        <a class="btn" href="#productos">Ver productos</a>
       </article>
-
+      <div class="carousel-dots" aria-label="Indicadores de diapositiva">
+        <button class="dot active" aria-label="Diapositiva 1"></button>
+        <button class="dot" aria-label="Diapositiva 2"></button>
+        <button class="dot" aria-label="Diapositiva 3"></button>
+        <button class="dot" aria-label="Diapositiva 4"></button>
+        <button class="dot" aria-label="Diapositiva 5"></button>
+        <button class="dot" aria-label="Diapositiva 6"></button>
+        <button class="dot" aria-label="Diapositiva 7"></button>
+      </div>
     </section>
 
-    <section
-      id="productos"
-      aria-labelledby="productos-titulo">
+    <!-- PRODUCTOS -->
+    <section id="productos" aria-labelledby="productos-titulo">
+      <h2 id="productos-titulo">Productos Destacados</h2>
 
-      <h2 id="productos-titulo">
-        Productos Destacados
-      </h2>
-
-      <section class="product-grid">
-
+      <h3 class="category-title">Pasteles</h3>
+      <section class="product-grid" aria-label="Pasteles">
         <article class="card">
-
-          <img
-            src="img/pastel1.webp"
-            alt="Pastel artesanal de chocolate"
-            loading="lazy">
-
-          <h3>Pastel de Chocolate</h3>
-
+          <img src="imagenes/pastel_01.jpeg" alt="Pastel artesanal" loading="lazy">
         </article>
-
         <article class="card">
-
-          <img
-            src="img/pastel2.webp"
-            alt="Cheesecake artesanal"
-            loading="lazy">
-
-          <h3>Cheesecake</h3>
-
+          <img src="imagenes/pastel_02.jpeg" alt="Pastel artesanal" loading="lazy">
         </article>
-
         <article class="card">
-
-          <img
-            src="img/croissant.webp"
-            alt="Croissant recién horneado"
-            loading="lazy">
-
-          <h3>Croissant</h3>
-
+          <img src="imagenes/pastel_03.jpeg" alt="Pastel artesanal" loading="lazy">
         </article>
-
         <article class="card">
-
-          <img
-            src="img/pan.webp"
-            alt="Pan artesanal"
-            loading="lazy">
-
-          <h3>Pan Artesanal</h3>
-
+          <img src="imagenes/pastel_04.jpeg" alt="Pastel artesanal" loading="lazy">
         </article>
-
         <article class="card">
-
-          <img
-            src="img/cupcake.webp"
-            alt="Cupcake decorado"
-            loading="lazy">
-
-          <h3>Cupcakes</h3>
-
+          <img src="imagenes/pastel_05.jpeg" alt="Pastel artesanal" loading="lazy">
         </article>
-
         <article class="card">
-
-          <img
-            src="img/cafe.webp"
-            alt="Café de la casa"
-            loading="lazy">
-
-          <h3>Café de la Casa</h3>
-
+          <img src="imagenes/pastel_06.jpeg" alt="Pastel artesanal" loading="lazy">
         </article>
-
+        <article class="card">
+          <img src="imagenes/pastel_07.jpeg" alt="Pastel artesanal" loading="lazy">
+        </article>
+        <article class="card">
+          <img src="imagenes/pastel_08.jpeg" alt="Pastel artesanal" loading="lazy">
+        </article>
+        <article class="card">
+          <img src="imagenes/pastel_09.jpeg" alt="Pastel artesanal" loading="lazy">
+        </article>
+        <article class="card">
+          <img src="imagenes/pastel_10.jpeg" alt="Pastel artesanal" loading="lazy">
+        </article>
+        <article class="card">
+          <img src="imagenes/pastel_11.jpeg" alt="Pastel artesanal" loading="lazy">
+        </article>
+        <article class="card">
+          <img src="imagenes/pastel_12.jpeg" alt="Pastel artesanal" loading="lazy">
+        </article>
+        <article class="card">
+          <img src="imagenes/pastel_13.jpeg" alt="Pastel artesanal" loading="lazy">
+        </article>
+        <article class="card">
+          <img src="imagenes/pastel_14.jpeg" alt="Pastel artesanal" loading="lazy">
+        </article>
       </section>
 
+      <h3 class="category-title">Café</h3>
+      <section class="product-grid" aria-label="Cafés">
+        <article class="card">
+          <img src="imagenes/cafe_01.jpeg" alt="Café de la casa" loading="lazy">
+        </article>
+        <article class="card">
+          <img src="imagenes/cafe_02.jpeg" alt="Café de la casa" loading="lazy">
+        </article>
+        <article class="card">
+          <img src="imagenes/cafe_03.jpeg" alt="Café de la casa" loading="lazy">
+        </article>
+        <article class="card">
+          <img src="imagenes/cafe_04.jpeg" alt="Café de la casa" loading="lazy">
+        </article>
+      </section>
     </section>
 
-    <section
-      id="nosotros"
-      aria-labelledby="nosotros-titulo">
-
-      <h2 id="nosotros-titulo">
-        Sobre Nosotros
-      </h2>
-
+    <!-- NOSOTROS -->
+    <section id="nosotros" aria-labelledby="nosotros-titulo">
+      <h2 id="nosotros-titulo">Sobre Nosotros</h2>
       <p>
         En Café Macondo elaboramos nuestros productos
         con dedicación, ingredientes de calidad y pasión
         por la repostería artesanal.
       </p>
-
     </section>
 
-    <section
-      id="contacto"
-      aria-labelledby="contacto-titulo">
-
-      <h2 id="contacto-titulo">
-        Contáctanos
-      </h2>
-
+    <!-- CONTACTO -->
+    <section id="contacto" aria-labelledby="contacto-titulo">
+      <h2 id="contacto-titulo">Contáctanos</h2>
       <address>
-
-        Ciudad Quesada, Costa Rica
-
-        <br>
-
+        Ciudad Quesada, Costa Rica<br>
         Teléfono:
-        <a href="tel:+50600000000">
-          +506 0000-0000
-        </a>
-
+        <a href="tel:+50600000000">+506 0000-0000</a>
       </address>
-
     </section>
 
   </main>
 
   <footer>
-
-    <p>
-      &copy; 2026 Café Macondo.
-      Todos los derechos reservados.
-    </p>
-
+    <p>&copy; 2026 Café Macondo. Todos los derechos reservados.</p>
   </footer>
 
-</body>
+  <script>
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.dot');
+    let current = 0;
+    let timer;
 
+    function goTo(index) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = index;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+
+    function next() {
+      goTo((current + 1) % slides.length);
+    }
+
+    function startTimer() {
+      timer = setInterval(next, 5000);
+    }
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        clearInterval(timer);
+        goTo(i);
+        startTimer();
+      });
+    });
+
+    startTimer();
+  </script>
+
+</body>
 </html>
