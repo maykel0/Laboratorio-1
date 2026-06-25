@@ -441,19 +441,63 @@ nav h1 {
   color: var(--color-primary);
 }
 
-.map-container {
+.contacto-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2.5rem;
+  align-items: stretch;
+  text-align: left;
   margin-top: 2rem;
+}
+
+.contacto-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  line-height: 1.9;
+}
+
+.contacto-info address {
+  font-style: normal;
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+.contacto-info a {
+  color: var(--color-accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.contacto-info a:hover,
+.contacto-info a:focus-visible {
+  text-decoration: underline;
+}
+
+.map-container {
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow);
   background: var(--color-surface);
+  min-height: 350px;
 }
 
 .map-container iframe {
   width: 100%;
-  height: 450px;
+  height: 100%;
+  min-height: 350px;
   border: 0;
   display: block;
+}
+
+@media (max-width: 768px) {
+  .contacto-layout {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ============================
