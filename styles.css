@@ -1,14 +1,90 @@
+/* ============================
+   VARIABLES BASE
+   ============================ */
 :root {
-  --color-primary: #5c3a21;
-  --color-secondary: #d4a373;
+  --color-primary:    #5c3a21;
+  --color-secondary:  #d4a373;
   --color-background: #fff8f0;
-  --color-surface: #ffffff;
-  --color-text: #2b2b2b;
-  --container-width: 1200px;
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-  --radius: 12px;
+  --color-surface:    #ffffff;
+  --color-text:       #2b2b2b;
+  --container-width:  1200px;
+  --shadow:           0 4px 12px rgba(0, 0, 0, 0.12);
+  --radius:           12px;
+  --font-size-base:   1rem;
 }
 
+/* ============================
+   MODO OSCURO
+   ============================ */
+body.dark-mode {
+  --color-primary:    #c49a6c;
+  --color-secondary:  #e8c99a;
+  --color-background: #1a1209;
+  --color-surface:    #2a1f12;
+  --color-text:       #f0e6d3;
+}
+
+/* ============================
+   ALTO CONTRASTE
+   ============================ */
+body.high-contrast {
+  --color-primary:    #000000;
+  --color-secondary:  #ffff00;
+  --color-background: #ffffff;
+  --color-surface:    #ffffff;
+  --color-text:       #000000;
+}
+
+body.high-contrast .site-header {
+  border-bottom: 3px solid #000000;
+}
+
+body.high-contrast .card {
+  border: 2px solid #000000;
+}
+
+body.high-contrast .btn,
+body.high-contrast .instagram-btn {
+  border: 2px solid #000000;
+  color: #000000 !important;
+  background: #ffff00 !important;
+}
+
+body.high-contrast a {
+  color: #0000cc;
+  text-decoration: underline;
+}
+
+body.high-contrast footer a {
+  color: #ffff00;
+}
+
+/* ============================
+   TAMAÑO DE FUENTE ACCESIBLE
+   ============================ */
+body.large-font {
+  --font-size-base: 1.25rem;
+}
+
+body.large-font p,
+body.large-font li,
+body.large-font address,
+body.large-font label {
+  font-size: 1.25rem;
+  line-height: 1.8;
+}
+
+body.large-font h1 { font-size: 2rem; }
+body.large-font h2 { font-size: 1.85rem; }
+body.large-font h3 { font-size: 1.5rem; }
+
+body.large-font .menu a {
+  font-size: 1.1rem;
+}
+
+/* ============================
+   RESET Y BASE
+   ============================ */
 *,
 *::before,
 *::after {
@@ -25,14 +101,49 @@ body {
   background: var(--color-background);
   color: var(--color-text);
   line-height: 1.6;
+  font-size: var(--font-size-base, 1rem);
+  transition: background 0.3s, color 0.3s;
 }
 
-/* HEADER */
+/* ============================
+   SALTAR AL CONTENIDO
+   ============================ */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  background: var(--color-secondary);
+  color: #000;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius);
+  font-weight: bold;
+  z-index: 9999;
+  text-decoration: none;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* ============================
+   FOCO VISIBLE GLOBAL
+   ============================ */
+:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ============================
+   HEADER
+   ============================ */
 .site-header {
   background: var(--color-primary);
   position: sticky;
   top: 0;
   z-index: 100;
+  transition: background 0.3s;
 }
 
 nav {
@@ -78,14 +189,20 @@ nav h1 {
 .menu a {
   color: white;
   text-decoration: none;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  display: inline-block;
 }
 
 .menu a:hover,
 .menu a:focus-visible {
   color: var(--color-secondary);
+  background: rgba(255,255,255,0.1);
 }
 
-/* HERO CON CARRUSEL */
+/* ============================
+   HERO CON CARRUSEL
+   ============================ */
 .hero {
   position: relative;
   min-height: 100vh;
@@ -134,29 +251,67 @@ nav h1 {
   margin: 0 0 1rem;
 }
 
-.carousel-dots {
+/* Controles del carrusel */
+.carousel-controls {
   position: absolute;
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
   display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.carousel-prev,
+.carousel-next {
+  background: rgba(255,255,255,0.25);
+  border: 2px solid rgba(255,255,255,0.6);
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.3rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  padding: 0;
+}
+
+.carousel-prev:hover,
+.carousel-prev:focus-visible,
+.carousel-next:hover,
+.carousel-next:focus-visible {
+  background: rgba(255,255,255,0.5);
+}
+
+.carousel-dots {
+  display: flex;
   gap: 10px;
 }
 
 .dot {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.45);
-  border: none;
+  border: 2px solid rgba(255,255,255,0.6);
   cursor: pointer;
   padding: 0;
   transition: background 0.3s;
 }
 
-.dot.active {
+.dot.active,
+.dot[aria-pressed="true"] {
   background: white;
+}
+
+.dot:hover,
+.dot:focus-visible {
+  background: rgba(255,255,255,0.8);
 }
 
 .btn {
@@ -168,13 +323,17 @@ nav h1 {
   border-radius: 999px;
   text-decoration: none;
   transition: opacity 0.2s;
+  font-weight: bold;
 }
 
-.btn:hover {
+.btn:hover,
+.btn:focus-visible {
   opacity: 0.85;
 }
 
-/* SECCIONES */
+/* ============================
+   SECCIONES
+   ============================ */
 #productos,
 #nosotros,
 #contacto {
@@ -199,7 +358,9 @@ nav h1 {
   letter-spacing: 0.05em;
 }
 
-/* GRID DE PRODUCTOS */
+/* ============================
+   GRID DE PRODUCTOS
+   ============================ */
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -211,7 +372,7 @@ nav h1 {
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow);
-  transition: transform 0.3s;
+  transition: transform 0.3s, background 0.3s;
 }
 
 .card:hover {
@@ -225,14 +386,24 @@ nav h1 {
   display: block;
 }
 
-/* NOSOTROS */
+/* Foco visible en imágenes de tarjetas */
+.card img:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+/* ============================
+   NOSOTROS
+   ============================ */
 #nosotros p {
   max-width: 700px;
   margin: 0 auto;
   text-align: center;
 }
 
-/* CONTACTO */
+/* ============================
+   CONTACTO
+   ============================ */
 #contacto {
   text-align: center;
 }
@@ -240,67 +411,46 @@ nav h1 {
 #contacto a {
   color: var(--color-primary);
 }
+
 .map-container {
   margin-top: 2rem;
-
   border-radius: var(--radius);
-
   overflow: hidden;
-
   box-shadow: var(--shadow);
-
   background: var(--color-surface);
 }
 
 .map-container iframe {
   width: 100%;
-
   height: 450px;
-
   border: 0;
-
   display: block;
 }
 
-/* INSTAGRAM */
-
+/* ============================
+   INSTAGRAM
+   ============================ */
 #instagram {
   max-width: var(--container-width);
-
   margin: 0 auto;
-
   padding: 4rem 1rem;
-
   text-align: center;
 }
 
 #instagram p {
   max-width: 600px;
-
   margin: 0 auto 1.5rem;
 }
 
 .instagram-btn {
   display: inline-block;
-
-  background: linear-gradient(
-    45deg,
-    #833ab4,
-    #fd1d1d,
-    #fcb045
-  );
-
+  background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
   color: white;
-
   text-decoration: none;
-
   padding: 1rem 2rem;
-
   border-radius: 999px;
-
   font-weight: bold;
-
-  transition: transform .2s ease;
+  transition: transform 0.2s ease;
 }
 
 .instagram-btn:hover,
@@ -308,13 +458,17 @@ nav h1 {
   transform: translateY(-2px);
 }
 
-/* FOOTER */
+/* ============================
+   FOOTER
+   ============================ */
 footer {
   background: var(--color-primary);
   color: white;
   text-align: center;
   padding: 1rem;
+  transition: background 0.3s;
 }
+
 .social-link a {
   color: var(--color-secondary);
   font-weight: 700;
@@ -325,7 +479,144 @@ footer {
 .social-link a:focus-visible {
   text-decoration: underline;
 }
-/* DESKTOP */
+
+/* ============================
+   BOTÓN FLOTANTE WHATSAPP
+   ============================ */
+.fab-whatsapp {
+  position: fixed;
+  bottom: 7rem;
+  right: 1.5rem;
+  z-index: 200;
+  background: #25d366;
+  color: white;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.5);
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.fab-whatsapp:hover,
+.fab-whatsapp:focus-visible {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.65);
+}
+
+/* ============================
+   PANEL DE ACCESIBILIDAD
+   ============================ */
+#a11y-panel {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.6rem;
+}
+
+.a11y-toggle-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: white;
+  border: 3px solid var(--color-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+  transition: transform 0.2s, background 0.2s;
+  padding: 0;
+}
+
+.a11y-toggle-btn:hover,
+.a11y-toggle-btn:focus-visible {
+  transform: scale(1.1);
+  background: var(--color-secondary);
+  color: var(--color-primary);
+}
+
+.a11y-toggle-btn[aria-expanded="true"] {
+  transform: rotate(45deg) scale(1.05);
+}
+
+/* Opciones del panel */
+.a11y-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-end;
+}
+
+.a11y-options[hidden] {
+  display: none;
+}
+
+.a11y-option-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 2px solid var(--color-primary);
+  border-radius: 999px;
+  padding: 0.55rem 1rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: var(--shadow);
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+
+.a11y-option-btn:hover,
+.a11y-option-btn:focus-visible {
+  background: var(--color-primary);
+  color: white;
+  transform: translateX(-4px);
+}
+
+.a11y-option-btn[aria-pressed="true"] {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-secondary);
+}
+
+.a11y-label {
+  font-size: 0.85rem;
+}
+
+/* ============================
+   REDUCCIÓN DE MOVIMIENTO
+   ============================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .carousel-slide {
+    transition: none;
+  }
+}
+
+/* ============================
+   DESKTOP
+   ============================ */
 @media (min-width: 768px) {
   nav {
     flex-direction: row;
