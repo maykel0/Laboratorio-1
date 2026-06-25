@@ -113,14 +113,12 @@
   -------------------------------------------------- */
   const a11yToggle  = document.getElementById('a11y-toggle');
   const a11yOptions = document.getElementById('a11y-options');
-  const btnContrast = document.getElementById('btn-contrast');
   const btnFontSize = document.getElementById('btn-fontsize');
   const btnDark     = document.getElementById('btn-darkmode');
   const body        = document.body;
 
   // Claves de almacenamiento
   const STORAGE_KEYS = {
-    contrast:  'macondo_high_contrast',
     fontSize:  'macondo_large_font',
     darkMode:  'macondo_dark_mode',
   };
@@ -140,7 +138,7 @@
       a11yToggle.setAttribute('aria-label', 'Cerrar panel de accesibilidad');
       document.getElementById('a11y-panel').setAttribute('aria-expanded', 'true');
       // Mover foco al primer botón de opción
-      btnContrast.focus();
+      btnFontSize.focus();
     }
   }
 
@@ -163,25 +161,6 @@
   a11yToggle.addEventListener('click', togglePanel);
 
 
-  /* -- Alto contraste -- */
-  function applyContrast(active) {
-    body.classList.toggle('high-contrast', active);
-    btnContrast.setAttribute('aria-pressed', String(active));
-    // Alto contraste y modo oscuro son mutuamente excluyentes
-    if (active) {
-      applyDarkMode(false);
-      localStorage.setItem(STORAGE_KEYS.darkMode, 'false');
-      btnDark.setAttribute('aria-pressed', 'false');
-    }
-  }
-
-  btnContrast.addEventListener('click', () => {
-    const nowActive = !body.classList.contains('high-contrast');
-    applyContrast(nowActive);
-    localStorage.setItem(STORAGE_KEYS.contrast, String(nowActive));
-  });
-
-
   /* -- Tamaño de fuente -- */
   function applyFontSize(active) {
     body.classList.toggle('large-font', active);
@@ -199,12 +178,6 @@
   function applyDarkMode(active) {
     body.classList.toggle('dark-mode', active);
     btnDark.setAttribute('aria-pressed', String(active));
-    // Modo oscuro y alto contraste son mutuamente excluyentes
-    if (active) {
-      applyContrast(false);
-      localStorage.setItem(STORAGE_KEYS.contrast, 'false');
-      btnContrast.setAttribute('aria-pressed', 'false');
-    }
   }
 
   btnDark.addEventListener('click', () => {
@@ -216,14 +189,11 @@
 
   /* -- Restaurar preferencias al cargar -- */
   function restorePreferences() {
-    const contrast  = localStorage.getItem(STORAGE_KEYS.contrast)  === 'true';
     const fontSize  = localStorage.getItem(STORAGE_KEYS.fontSize)  === 'true';
     const darkMode  = localStorage.getItem(STORAGE_KEYS.darkMode)  === 'true';
 
-    if (contrast) applyContrast(true);
     if (fontSize) applyFontSize(true);
-    // Solo aplicar oscuro si no hay alto contraste activo
-    if (darkMode && !contrast) applyDarkMode(true);
+    if (darkMode) applyDarkMode(true);
   }
 
   restorePreferences();

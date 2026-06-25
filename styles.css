@@ -24,40 +24,6 @@ body.dark-mode {
   --color-text:       #f0e6d3;
 }
 
-/* ============================
-   ALTO CONTRASTE
-   ============================ */
-body.high-contrast {
-  --color-primary:    #000000;
-  --color-secondary:  #ffff00;
-  --color-background: #ffffff;
-  --color-surface:    #ffffff;
-  --color-text:       #000000;
-}
-
-body.high-contrast .site-header {
-  border-bottom: 3px solid #000000;
-}
-
-body.high-contrast .card {
-  border: 2px solid #000000;
-}
-
-body.high-contrast .btn,
-body.high-contrast .instagram-btn {
-  border: 2px solid #000000;
-  color: #000000 !important;
-  background: #ffff00 !important;
-}
-
-body.high-contrast a {
-  color: #0000cc;
-  text-decoration: underline;
-}
-
-body.high-contrast footer a {
-  color: #ffff00;
-}
 
 /* ============================
    TAMAÑO DE FUENTE ACCESIBLE
