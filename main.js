@@ -148,22 +148,41 @@
 
   /* -- Abrir / cerrar panel -- */
   function togglePanel() {
-    const isOpen = a11yOptions.hidden === false;
+  const isOpen = a11yOptions.hidden === false;
 
-    if (isOpen) {
-      a11yOptions.hidden = true;
-      a11yToggle.setAttribute('aria-expanded', 'false');
-      a11yToggle.setAttribute('aria-label', 'Abrir panel de accesibilidad');
-      document.getElementById('a11y-panel').setAttribute('aria-expanded', 'false');
-    } else {
-      a11yOptions.hidden = false;
-      a11yToggle.setAttribute('aria-expanded', 'true');
-      a11yToggle.setAttribute('aria-label', 'Cerrar panel de accesibilidad');
-      document.getElementById('a11y-panel').setAttribute('aria-expanded', 'true');
-      // Mover foco al primer botón de opción
-      btnFontIncrease.focus();
-    }
+  if (isOpen) {
+    a11yOptions.hidden = true;
+
+    a11yToggle.setAttribute('aria-expanded', 'false');
+    a11yToggle.setAttribute(
+      'aria-label',
+      'Abrir panel de accesibilidad'
+    );
+
+    document
+      .getElementById('a11y-panel')
+      .setAttribute('aria-expanded', 'false');
+
+    document.body.classList.remove('a11y-open');
+
+  } else {
+    a11yOptions.hidden = false;
+
+    a11yToggle.setAttribute('aria-expanded', 'true');
+    a11yToggle.setAttribute(
+      'aria-label',
+      'Cerrar panel de accesibilidad'
+    );
+
+    document
+      .getElementById('a11y-panel')
+      .setAttribute('aria-expanded', 'true');
+
+    document.body.classList.add('a11y-open');
+
+    btnFontIncrease.focus();
   }
+}
 
   // Cerrar panel al presionar Escape
   document.addEventListener('keydown', (e) => {
@@ -239,5 +258,20 @@
       }
     });
   }
+
+/* --------------------------------------------------
+   BOTÓN VOLVER ARRIBA
+-------------------------------------------------- */
+
+const backToTopBtn = document.getElementById('back-to-top');
+
+if (backToTopBtn) {
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
 
 })();

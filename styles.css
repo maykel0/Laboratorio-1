@@ -635,3 +635,64 @@ footer {
     justify-content: space-between;
   }
 }
+/* ======================================
+   BOTONES FLOTANTES ADAPTATIVOS
+====================================== */
+
+/* WhatsApp */
+.fab-whatsapp {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 7rem;
+  z-index: 200;
+
+  transition:
+    bottom 0.3s ease,
+    transform 0.2s ease;
+}
+
+/* Volver arriba */
+.fab-top {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 12rem;
+
+  width: 56px;
+  height: 56px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: var(--color-primary);
+  color: white;
+
+  font-size: 1.5rem;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: var(--shadow);
+
+  z-index: 210;
+
+  transition:
+    bottom 0.3s ease,
+    transform 0.2s ease;
+}
+
+.fab-top:hover,
+.fab-top:focus-visible {
+  transform: scale(1.1);
+}
+
+/* Cuando el panel de accesibilidad se abre */
+
+body.a11y-open .fab-whatsapp {
+  bottom: 18rem;
+}
+
+body.a11y-open .fab-top {
+  bottom: 23rem;
+}
