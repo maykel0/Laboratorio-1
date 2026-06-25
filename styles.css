@@ -24,12 +24,12 @@
    MODO OSCURO
    ============================ */
 body.dark-mode {
-  --color-primary:    #d4a500;
-  --color-secondary:  #f0c830;
-  --color-background: #1a0a02;
-  --color-surface:    #2b1406;
+  --color-primary:    #2a1205;
+  --color-secondary:  #d4a500;
+  --color-background: #3b1e0a;
+  --color-surface:    #4a2610;
   --color-text:       #f5e6c8;
-  --color-accent:     #c47a30;
+  --color-accent:     #a0581a;
 }
 
 
