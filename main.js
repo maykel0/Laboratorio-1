@@ -412,10 +412,8 @@ document
     modalName.textContent = name;
     modalDesc.textContent = desc;
 
-    const base = `${location.origin}${location.pathname.replace(/\/[^/]*$/, '/')}`; 
-    const fullImageUrl = imageUrl.startsWith('http') ? imageUrl : `${base}imagenes/${imageUrl}`;
-
-    const message = `Hola, me gustaría cotizar el siguiente pastel:\n${fullImageUrl}`;
+    const base = 'https://maykel0.github.io/Laboratorio-1/imagenes/';
+    const message = `Hola, me gustaría cotizar el siguiente pastel:\n${base}${imageUrl}`;
     modalWaBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
     previousFocus = document.activeElement;
