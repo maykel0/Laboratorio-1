@@ -274,7 +274,7 @@ if (backToTopBtn) {
   });
 }
 /* ============================
-   CARRUSELES DE PASTELES
+   CARRUSELES DE PASTELES — INFINITO
 ============================ */
 
 document
@@ -282,29 +282,77 @@ document
   .forEach(wrapper => {
 
     const carousel = wrapper.querySelector('.cake-carousel');
-    const nextBtn = wrapper.querySelector('.next-btn');
-    const prevBtn = wrapper.querySelector('.prev-btn');
+    const nextBtn  = wrapper.querySelector('.next-btn');
+    const prevBtn  = wrapper.querySelector('.prev-btn');
 
     if (!carousel || !nextBtn || !prevBtn) return;
 
-    nextBtn.addEventListener('click', () => {
-      const card = carousel.querySelector('.card');
+    // 1. Clonar todas las tarjetas al inicio y al final
+    const origCards = Array.from(carousel.querySelectorAll('.card'));
+    const total = origCards.length;
 
-      carousel.scrollBy({
-        left: card.offsetWidth + 24,
-        behavior: 'smooth'
-      });
+    // Clonar al final
+    origCards.forEach(card => {
+      const clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      carousel.appendChild(clone);
     });
 
-    prevBtn.addEventListener('click', () => {
-      const card = carousel.querySelector('.card');
-
-      carousel.scrollBy({
-        left: -(card.offsetWidth + 24),
-        behavior: 'smooth'
-      });
+    // Clonar al inicio
+    origCards.slice().reverse().forEach(card => {
+      const clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      carousel.prepend(clone);
     });
 
+    // 2. Función para obtener el ancho de una tarjeta + gap
+    function cardStep() {
+      const card = carousel.querySelector('.card');
+      const gap = parseFloat(getComputedStyle(carousel).gap) || 24;
+      return card.offsetWidth + gap;
+    }
+
+    // 3. Posicionar el scroll al inicio de las tarjetas originales (después de los clones del inicio)
+    function init() {
+      carousel.style.scrollBehavior = 'auto';
+      carousel.scrollLeft = cardStep() * total;
+      carousel.style.scrollBehavior = '';
+    }
+
+    init();
+    window.addEventListener('resize', init);
+
+    // 4. Avanzar / retroceder
+    let isScrolling = false;
+
+    function step(direction) {
+      if (isScrolling) return;
+      isScrolling = true;
+
+      const move = cardStep() * direction;
+      carousel.style.scrollBehavior = 'smooth';
+      carousel.scrollLeft += move;
+
+      // Tras la transición, revisar si hay que saltar
+      setTimeout(() => {
+        carousel.style.scrollBehavior = 'auto';
+
+        const maxReal  = cardStep() * (total * 2); // inicio de clones finales
+        const minReal  = cardStep() * total;        // inicio de originales
+
+        if (carousel.scrollLeft >= maxReal) {
+          carousel.scrollLeft -= cardStep() * total;
+        } else if (carousel.scrollLeft < minReal - cardStep() * (total - 1) - 1) {
+          carousel.scrollLeft += cardStep() * total;
+        }
+
+        carousel.style.scrollBehavior = '';
+        isScrolling = false;
+      }, 400); // mismo tiempo que la transición CSS smooth (~300-400 ms)
+    }
+
+    nextBtn.addEventListener('click', () => step(1));
+    prevBtn.addEventListener('click', () => step(-1));
 });
 
 })();
