@@ -377,3 +377,116 @@ document
 });
 
 })();
+
+
+/* ============================
+   MODAL DE PASTELES
+============================ */
+
+(function () {
+  const WHATSAPP_NUMBER = '50688828228';
+
+  const overlay    = document.getElementById('cake-modal');
+  const closeBtn   = document.getElementById('cake-modal-close');
+  const modalImg   = document.getElementById('modal-cake-img');
+  const modalName  = document.getElementById('modal-cake-name');
+  const modalDesc  = document.getElementById('modal-cake-desc');
+  const modalWaBtn = document.getElementById('modal-whatsapp-btn');
+
+  let previousFocus = null;
+
+  function getFocusable() {
+    return Array.from(
+      overlay.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])')
+    ).filter(el => !el.disabled);
+  }
+
+  function openModal(card) {
+    const name     = card.dataset.name        || 'Pastel artesanal';
+    const desc     = card.dataset.description || 'Elaborado con ingredientes frescos y mucho amor artesanal.';
+    const imageUrl = card.dataset.imageUrl    || card.querySelector('img')?.src || '';
+    const imgAlt   = card.querySelector('img')?.alt || name;
+
+    modalImg.src          = `imagenes/${imageUrl}`;
+    modalImg.alt          = imgAlt;
+    modalName.textContent = name;
+    modalDesc.textContent = desc;
+
+    const base = `${location.origin}${location.pathname.replace(/\/[^/]*$/, '/')}`; 
+    const fullImageUrl = imageUrl.startsWith('http') ? imageUrl : `${base}imagenes/${imageUrl}`;
+
+    const message = `Hola, me gustaría cotizar el siguiente pastel:\n${fullImageUrl}`;
+    modalWaBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+    previousFocus = document.activeElement;
+    overlay.removeAttribute('hidden');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    requestAnimationFrame(() => {
+      overlay.classList.add('modal-visible');
+      closeBtn.focus();
+    });
+  }
+
+  function closeModal() {
+    overlay.classList.remove('modal-visible');
+
+    overlay.addEventListener('transitionend', function handler() {
+      overlay.setAttribute('hidden', '');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (previousFocus) previousFocus.focus();
+      overlay.removeEventListener('transitionend', handler);
+    });
+  }
+
+  closeBtn.addEventListener('click', closeModal);
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (overlay.hasAttribute('hidden')) return;
+
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      closeModal();
+    }
+
+    if (e.key === 'Tab') {
+      const focusable = getFocusable();
+      const first = focusable[0];
+      const last  = focusable[focusable.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    }
+  });
+
+  // Delegación de eventos: funciona en originales y clones del carrusel infinito
+  document.addEventListener('click', (e) => {
+    const card = e.target.closest('.cake-card');
+    if (card && !card.getAttribute('aria-hidden')) openModal(card);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const card = e.target.closest('.cake-card');
+    if (card && !card.getAttribute('aria-hidden')) {
+      e.preventDefault();
+      openModal(card);
+    }
+  });
+
+}());
