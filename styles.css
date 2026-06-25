@@ -27,25 +27,45 @@ body.dark-mode {
 
 /* ============================
    TAMAÑO DE FUENTE ACCESIBLE
+   Se aplica sobre html { font-size } en px
+   para que todos los rem y clamp() escalen.
    ============================ */
-body.large-font {
-  --font-size-base: 1.25rem;
+
+/* Controles +/- de fuente en el panel */
+.a11y-fontsize-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+  background: var(--color-surface);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius);
+  padding: 0.5rem 0.75rem;
+  box-shadow: var(--shadow);
 }
 
-body.large-font p,
-body.large-font li,
-body.large-font address,
-body.large-font label {
-  font-size: 1.25rem;
-  line-height: 1.8;
+.a11y-fontsize-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
-body.large-font h1 { font-size: 2rem; }
-body.large-font h2 { font-size: 1.85rem; }
-body.large-font h3 { font-size: 1.5rem; }
+.a11y-font-btn {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
 
-body.large-font .menu a {
-  font-size: 1.1rem;
+.font-size-display {
+  font-size: 0.85rem;
+  font-weight: 700;
+  min-width: 3rem;
+  text-align: center;
+  color: var(--color-primary);
 }
 
 /* ============================

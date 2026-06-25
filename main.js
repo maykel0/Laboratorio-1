@@ -113,15 +113,38 @@
   -------------------------------------------------- */
   const a11yToggle  = document.getElementById('a11y-toggle');
   const a11yOptions = document.getElementById('a11y-options');
-  const btnFontSize = document.getElementById('btn-fontsize');
+  const btnFontIncrease = document.getElementById('btn-font-increase');
+  const btnFontDecrease = document.getElementById('btn-font-decrease');
+  const fontDisplay     = document.getElementById('font-size-display');
   const btnDark     = document.getElementById('btn-darkmode');
   const body        = document.body;
 
   // Claves de almacenamiento
   const STORAGE_KEYS = {
-    fontSize:  'macondo_large_font',
+    fontSize:  'macondo_font_size_px',
     darkMode:  'macondo_dark_mode',
   };
+
+  /* -- Tamaño de fuente progresivo -- */
+  const FONT_MIN    = 12;   // px mínimo
+  const FONT_MAX    = 28;   // px máximo
+  const FONT_STEP   = 2;    // px por clic
+  const FONT_DEFAULT = 16;  // px base
+
+  let currentFontSize = FONT_DEFAULT;
+
+  function applyFontSize(px) {
+    currentFontSize = Math.min(FONT_MAX, Math.max(FONT_MIN, px));
+    document.documentElement.style.fontSize = currentFontSize + 'px';
+    const pct = Math.round((currentFontSize / FONT_DEFAULT) * 100);
+    fontDisplay.textContent = pct + '%';
+    btnFontDecrease.disabled = currentFontSize <= FONT_MIN;
+    btnFontIncrease.disabled = currentFontSize >= FONT_MAX;
+    localStorage.setItem(STORAGE_KEYS.fontSize, String(currentFontSize));
+  }
+
+  btnFontIncrease.addEventListener('click', () => applyFontSize(currentFontSize + FONT_STEP));
+  btnFontDecrease.addEventListener('click', () => applyFontSize(currentFontSize - FONT_STEP));
 
   /* -- Abrir / cerrar panel -- */
   function togglePanel() {
@@ -138,7 +161,7 @@
       a11yToggle.setAttribute('aria-label', 'Cerrar panel de accesibilidad');
       document.getElementById('a11y-panel').setAttribute('aria-expanded', 'true');
       // Mover foco al primer botón de opción
-      btnFontSize.focus();
+      btnFontIncrease.focus();
     }
   }
 
@@ -161,19 +184,6 @@
   a11yToggle.addEventListener('click', togglePanel);
 
 
-  /* -- Tamaño de fuente -- */
-  function applyFontSize(active) {
-    body.classList.toggle('large-font', active);
-    btnFontSize.setAttribute('aria-pressed', String(active));
-  }
-
-  btnFontSize.addEventListener('click', () => {
-    const nowActive = !body.classList.contains('large-font');
-    applyFontSize(nowActive);
-    localStorage.setItem(STORAGE_KEYS.fontSize, String(nowActive));
-  });
-
-
   /* -- Modo oscuro -- */
   function applyDarkMode(active) {
     body.classList.toggle('dark-mode', active);
@@ -189,10 +199,10 @@
 
   /* -- Restaurar preferencias al cargar -- */
   function restorePreferences() {
-    const fontSize  = localStorage.getItem(STORAGE_KEYS.fontSize)  === 'true';
-    const darkMode  = localStorage.getItem(STORAGE_KEYS.darkMode)  === 'true';
+    const savedFont = parseInt(localStorage.getItem(STORAGE_KEYS.fontSize), 10);
+    const darkMode  = localStorage.getItem(STORAGE_KEYS.darkMode) === 'true';
 
-    if (fontSize) applyFontSize(true);
+    if (savedFont && savedFont !== FONT_DEFAULT) applyFontSize(savedFont);
     if (darkMode) applyDarkMode(true);
   }
 
