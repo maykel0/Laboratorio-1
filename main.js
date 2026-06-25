@@ -109,6 +109,27 @@
 
 
   /* --------------------------------------------------
+     NAV — encoger al hacer scroll
+  -------------------------------------------------- */
+  const siteHeader = document.querySelector('.site-header');
+
+  const SCROLL_DOWN = 60;  // umbral para encoger
+  const SCROLL_UP   = 20;  // umbral para expandir (histéresis)
+
+  function updateHeader() {
+    const y = window.scrollY;
+    if (!siteHeader.classList.contains('scrolled') && y > SCROLL_DOWN) {
+      siteHeader.classList.add('scrolled');
+    } else if (siteHeader.classList.contains('scrolled') && y < SCROLL_UP) {
+      siteHeader.classList.remove('scrolled');
+    }
+  }
+
+  window.addEventListener('scroll', updateHeader, { passive: true });
+  updateHeader(); // estado inicial
+
+
+  /* --------------------------------------------------
      PANEL DE ACCESIBILIDAD — localStorage
   -------------------------------------------------- */
   const a11yToggle  = document.getElementById('a11y-toggle');
