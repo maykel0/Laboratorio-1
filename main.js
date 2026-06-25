@@ -273,5 +273,38 @@ if (backToTopBtn) {
     });
   });
 }
+/* ============================
+   CARRUSELES DE PASTELES
+============================ */
+
+document
+  .querySelectorAll('.cake-carousel-wrapper')
+  .forEach(wrapper => {
+
+    const carousel = wrapper.querySelector('.cake-carousel');
+    const nextBtn = wrapper.querySelector('.next-btn');
+    const prevBtn = wrapper.querySelector('.prev-btn');
+
+    if (!carousel || !nextBtn || !prevBtn) return;
+
+    nextBtn.addEventListener('click', () => {
+      const card = carousel.querySelector('.card');
+
+      carousel.scrollBy({
+        left: card.offsetWidth + 24,
+        behavior: 'smooth'
+      });
+    });
+
+    prevBtn.addEventListener('click', () => {
+      const card = carousel.querySelector('.card');
+
+      carousel.scrollBy({
+        left: -(card.offsetWidth + 24),
+        behavior: 'smooth'
+      });
+    });
+
+});
 
 })();
