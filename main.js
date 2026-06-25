@@ -210,23 +210,18 @@
 
 
   /* --------------------------------------------------
-     NAVEGACIÓN CON TECLADO — imágenes de producto
-     Las imágenes con tabindex="0" deben poder
-     "activarse" con Enter o Espacio (abrir modal/lightbox
-     o simplemente dar feedback de foco visual ya manejado
-     por CSS).
+     NAVEGACIÓN CON TECLADO — tarjetas de producto
+     El <article class="card"> recibe tabindex="0" y
+     responde a Enter/Espacio con feedback visual.
   -------------------------------------------------- */
-  const productImages = document.querySelectorAll('.card img[tabindex="0"]');
+  const productCards = document.querySelectorAll('.card[tabindex="0"]');
 
-  productImages.forEach((img) => {
-    img.addEventListener('keydown', (e) => {
+  productCards.forEach((card) => {
+    card.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        // En este proyecto las imágenes no tienen acción especial,
-        // pero el Enter/Espacio deja focus visible y podría usarse
-        // para abrir un lightbox en el futuro.
-        img.style.outline = '4px solid var(--color-secondary)';
-        setTimeout(() => { img.style.outline = ''; }, 600);
+        card.classList.add('card--activated');
+        setTimeout(() => card.classList.remove('card--activated'), 400);
       }
     });
   });

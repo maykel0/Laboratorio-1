@@ -358,25 +358,40 @@ nav h1 {
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow);
-  transition: transform 0.3s, background 0.3s;
+  transition: transform 0.3s, background 0.3s, box-shadow 0.2s;
+  /* El foco se gestiona en la tarjeta, no en la imagen */
+  position: relative;
 }
 
 .card:hover {
   transform: translateY(-6px);
 }
 
+/* La imagen no recibe foco directamente; el <article> sí */
 .card img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   display: block;
+  pointer-events: none; /* evita doble tabulación imagen/card */
 }
 
-/* Foco visible en imágenes de tarjetas */
-.card img:focus-visible {
+/* Indicador de foco visible en la tarjeta completa */
+.card:focus-visible {
   outline: 3px solid var(--color-secondary);
-  outline-offset: 2px;
+  outline-offset: 4px;
+  box-shadow: 0 0 0 5px var(--color-secondary), var(--shadow);
+  transform: translateY(-4px);
 }
+
+/* Pulso al activar con teclado */
+.card--activated {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 4px;
+  transform: scale(0.97);
+  transition: transform 0.15s;
+}
+
 
 /* ============================
    NOSOTROS
